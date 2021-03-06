@@ -1,6 +1,10 @@
 const express = require('express');
+const connectDB = require('./config/db');
 
 const app = express();
+
+// connect mongo db
+connectDB();
 
 app.get('/', (req, res) =>
   res.json({ msg: 'welcome to the contact keeper Api' })

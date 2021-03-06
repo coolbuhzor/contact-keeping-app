@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const user = require('../models/User');
+
 // @route Post api/users
 // @ desc register a user
 // @access public
