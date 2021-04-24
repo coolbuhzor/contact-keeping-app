@@ -6,6 +6,8 @@ const app = express();
 // connect mongo db
 connectDB();
 
+// init middle ware
+app.use(express.json({ extended: false }));
 app.get('/', (req, res) =>
   res.json({ msg: 'welcome to the contact keeper Api' })
 );
