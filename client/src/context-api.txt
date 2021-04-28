@@ -1,0 +1,85 @@
+CONTEXT API DOCUMENTATION.
+STEP-1 WE CREATE A CONTEXT FOLDER INSIDE THE REACT SRC FOLDER (client>src>context)
+STEP-2 WE CREATE A TYPE.JS FILE INSIDE THE CONTEXT FOLDER (client>src>context>type.js)
+STEP-3 WE CREATE A FOLDER FOR HANDLING OUR APP'S CONTEXT IN THIS CASE WE NAMED THE FOLDER CONTACT (client>src>context>contact)
+STEP-4 WE CREATE 3 FILES INSIDE THE CONTACT FOLDER. THE 3 FILES WOULD BE CONTEXT, STATE AND REDUCER. (client>src>context>contact{ContactState, contactContext, contactReducer}). n.b the state(ContactState) file inside the context folder should always start with a capital letter.
+STEP-6 WE INITIALIZE CONTEXT API BY IMPORTING {import {contactContext} from 'react'} in the context file(contactContext).
+STEP-7 still on initializing the context api, we then type in (const contactContext = createContext(); export default contactContext;)
+STEP-8 after initializing the che context api, we then go to the state file(ContactState) and import useReducer fom react(import {useReducer} from 'react') to have access to state and dispatch.
+STEP-9 then we import the other files (contactContext and contactReducer) also into ContactState component
+STEP-10 we then go to the type.js file and create the 'types' we would use in our react app e.g :
+(export const ADD_CONTACT = 'ADD_CONTACT';
+export const DELETE_CONTACT = 'DELETE_CONTACT';
+export const SET_CURRENT = 'SET_CURRENT';
+export const CLEAR_CURRENT = 'CLEAR_CURRENT';
+export const UPDATE_CONTACT = 'UPDATE_CONTACT';
+export const FILTER_CONTACT = 'FILTER_CONTACT';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
+)
+STEP-11 we then go back to our ContactState.js and import the type we need from the type.js file. e.g
+import {
+  ADD_CONTACT,
+  DELETE_CONTACT,
+  SET_CURRENT,
+  CLEAR_CURRENT,
+  UPDATE_CONTACT,
+  FILTER_CONTACT,
+  CLEAR_FILTER,
+} from '../types';
+STEP-12 we set our initial state and all the functions and action inside the state function(ContactState). eg.
+const ContactState = (props) => {
+  const initialState = [
+    {
+      id: 1,
+      name: 'Chigozie Ezechukwu',
+      email: 'chiezechukwu@gmail.com',
+      phone: '08024689001',
+      type: 'personal',
+    },
+    {
+      id: 2,
+      name: 'Obinna Ogbonna',
+      email: 'obijapan@gmail.com',
+      phone: '08052589446',
+      type: 'personal',
+    },
+    {
+      id: 3,
+      name: 'john Berger',
+      email: 'jberger@gmail.com',
+      phone: '08036779043',
+      type: 'professional',
+    },
+  ];
+  const [state, dispatch] = useReducer(contactReducer, initialState);
+the functions/actions
+  // all our actions
+
+  //add contacts
+
+  //delete contacts
+
+  //set current contacts
+
+  //clear current contacts
+
+  //update contacts
+
+  // set filter
+
+  //clear filter
+
+
+};
+
+STEP-13 we then return the code below after the action/function
+  return (
+    <ContactContext.Provider value={{ contacts: state.contacts }}>
+      {props.children}
+    </ContactContext.Provider>
+  );
+  the code above allows us to access the ContactContext and it's properties wherever it is being called.
+
+STEP-14 then we import ContactState in app.js and pass every other component through contact state. 
