@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 // import Contacts from './Contacts'
 
 const ContactItem = ({ contact }) => {
@@ -14,6 +15,8 @@ const ContactItem = ({ contact }) => {
             ${type === 'professional' ? 'badge-success' : 'badge-primary'}`}
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
+          {console.log(type.slice(1))}
+          {console.log(type.charAt(0))}
         </span>
       </h3>
       <ul className='list'>
